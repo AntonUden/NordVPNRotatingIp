@@ -1,4 +1,4 @@
-from nordvpn_switcher import initialize_VPN,rotate_VPN
+from nordvpn_switcher import initialize_VPN,rotate_VPN,terminate_VPN
 import time
 
 minutest_between_switch = 5
@@ -13,6 +13,9 @@ while(True):
 		next_change = 60 * minutest_between_switch
 		print("Done. Next change in " + str(next_change) + " seconds")
 		time.sleep(next_change)
+		terminate_VPN(vpn)
 	except Exception as e:
 		print("An error occured. Switching in 10 seconds")
+		print("Terminating VPN")
+		terminate_VPN(vpn)
 		time.sleep(10)
